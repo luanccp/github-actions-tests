@@ -11,4 +11,5 @@ jobs:
       with:
         # The GITHUB_TOKEN secret
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
+
         # The path for the label configurations
