@@ -1,12 +1,10 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Check branch
 
 # Controls when the action will run. 
 on: push
    
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
@@ -20,5 +18,13 @@ jobs:
 
       - name: Branch name
         run: echo running on branch ${GITHUB_REF##*/}
-
+        
+      - name: conditional command
+        run: |
+          if ${GITHUB_REF##*/}=='luanccp-patch-4'; then
+              echo running on branch ${GITHUB_REF##*/}
+          else
+              echo runnin the else statement
+          fi
+          
       
