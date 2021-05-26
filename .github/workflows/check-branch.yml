@@ -10,6 +10,8 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+     STAGING_FIREBASE_CREDENTIALS: ${{GITHUB_REF##*/== 'luanccp-patch-4' && 'verdade' || 'false' }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -19,6 +21,9 @@ jobs:
       - name: Branch name
         run: echo running on branch ${GITHUB_REF##*/}
         
+      - name: Echo env variable conditional
+        run: echo running on branch ${STAGING_FIREBASE_CREDENTIALS}
+        
       - name: conditional command
         run: |
           if ${GITHUB_REF##*/}=='luanccp-patch-4'; then
@@ -26,5 +31,10 @@ jobs:
           else
               echo runnin the else statement
           fi
+          
+          
+      - name: ternary command
+        run: |
+            ${{ GITHUB_REF##*/== 'luanccp-patch-4' && 'yes' || 'no }}
           
       
